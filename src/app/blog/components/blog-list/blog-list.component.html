@@ -1,0 +1,25 @@
+<!-- src/app/blog/components/blog-list/blog-list.component.html -->
+<div class="container">
+    <h1>Наш Блог</h1>
+    <a routerLink="/blog/create" class="create-button">Создать новый пост</a>
+  
+    <!-- Показываем индикатор загрузки -->
+    <div *ngIf="isLoading">
+      <p>Загрузка постов...</p>
+    </div>
+  
+    <!-- Показываем список постов, если загрузка завершена и посты есть -->
+    <div *ngIf="!isLoading && posts.length > 0" class="post-list">
+      <div *ngFor="let post of posts" class="post-card">
+        <!-- Используем поля из нашей модели BlogPostView -->
+        <h2>{{ post.Title }}</h2>
+        <p>{{ post.Content | slice:0:150 }}...</p> <!-- Обрезаем контент для превью -->
+        <p class="meta">Опубликовано: {{ post.CreatedAt | date:'fullDate' }}</p>
+      </div>
+    </div>
+  
+    <!-- Сообщение, если постов нет -->
+    <div *ngIf="!isLoading && posts.length === 0">
+      <p>Пока нет ни одного поста. Станьте первым!</p>
+    </div>
+  </div>

@@ -2,12 +2,24 @@
     <h2>Регистрация</h2>
     <form>
       <div class="form-group">
+        <label for="username">Username</label>
+        <input type="username" id="username" name="username" [(ngModel)] = "registrationForm.UserName">
+      </div>
+      <div class="form-group">
         <label for="email">Email</label>
-        <input type="email" id="email" name="email">
+        <input type="email" id="email" name="email" [(ngModel)] = "registrationForm.Email">
       </div>
       <div class="form-group">
         <label for="password">Пароль</label>
-        <input type="password" id="password" name="password">
+        <input type="password" id="password" name="password" [(ngModel)] = "registrationForm.Password">
+      </div>
+      <div class="form-group">
+        <label for="passwordretry">Повтор Пароля</label>
+        <input type="password" id="passwordretry" name="passwordretry">
+      </div>
+      <div class="form-group">
+        <label for="date">Дата Рождения</label>
+        <input type="date" id="date" name="date" [(ngModel)] = "registrationForm.DateOfBirth">
       </div>
       <button type="submit">Зарегистрироваться</button>
     </form>

@@ -15,7 +15,7 @@ export class BlogPostCreateComponent {
   post: BlogPostCreate = {
     Title: '',
     Content: '',
-    CategoryIds: [], 
+    CategoryId: '', 
     Privacy: 'public'
   };
 

@@ -10,15 +10,15 @@ import { BlogPostCreate } from '../models/blog-post-create.model';
 })
 export class BlogService {
  
-  private apiUrl = 'http://localhost:5000/api/posts'; 
+  private apiUrl = 'https://localhost:7204/api/blog'; 
 
   constructor(private http: HttpClient) { }
   
-  getPosts(): Observable<BlogPostView[]> {
+  public getAllBlogs(): Observable<BlogPostView[]> {
     return this.http.get<BlogPostView[]>(this.apiUrl);
   }
  
-  createPost(postData: BlogPostCreate): Observable<BlogPostView> {
+  public createBlogs(postData: BlogPostCreate): Observable<BlogPostView> {
     return this.http.post<BlogPostView>(this.apiUrl, postData);
   }
 }

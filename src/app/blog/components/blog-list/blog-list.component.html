@@ -1,25 +1,38 @@
-<!-- src/app/blog/components/blog-list/blog-list.component.html -->
-<div class="container">
-    <h1>Наш Блог</h1>
-    <a routerLink="/blog/create" class="create-button">Создать новый пост</a>
+<!-- Это заголовок страницы. -->
+<!-- d-flex - превращает div в flex-контейнер. Это позволяет легко управлять расположением дочерних элементов. -->
+<!-- justify-content-between - расталкивает дочерние элементы по краям (заголовок влево, кнопку вправо). -->
+<!-- align-items-center - выравнивает элементы по вертикали по центру. -->
+<!-- mb-4 - 'margin-bottom' размером 4. Создает отступ под заголовком. -->
+<div class="d-flex justify-content-between align-items-center mb-4">
+  <h1 class="mb-0">Наш Блог</h1>
+  <!-- btn - базовый класс для кнопки. -->
+  <!-- btn-primary - делает кнопку синей (основной цвет темы). -->
+  <a routerLink="/blog/create" class="btn btn-primary">Создать пост</a>
+</div>
+
+<!-- Блок для индикатора загрузки. -->
+<div *ngIf="isLoading" class="text-center">
+  <div class="spinner-border text-primary" role="status">
+  </div>
+</div>
+
+<!-- row - это контейнер для колонок нашей сетки. -->
+<div *ngIf="!isLoading && posts.length > 0" class="row">
   
-    <!-- Показываем индикатор загрузки -->
-    <div *ngIf="isLoading">
-      <p>Загрузка постов...</p>
-    </div>
-  
-    <!-- Показываем список постов, если загрузка завершена и посты есть -->
-    <div *ngIf="!isLoading && posts.length > 0" class="post-list">
-      <div *ngFor="let post of posts" class="post-card">
-        <!-- Используем поля из нашей модели BlogPostView -->
-        <h2>{{ post.Title }}</h2>
-        <p>{{ post.Content | slice:0:150 }}...</p> <!-- Обрезаем контент для превью -->
-        <p class="meta">Опубликовано: {{ post.CreatedAt | date:'fullDate' }}</p>
+  <div *ngFor="let post of posts" class="col-md-6 mb-4">
+
+    <div class="card h-100">  
+      <div class="card-body d-flex flex-column">
+        <h5 class="card-title">{{ post.title }}</h5>
+        <p class="card-text">{{ post.content | slice:0:150 }}...</p>
+        
+        <a [routerLink]="['/blog', post.id]" class="btn btn-outline-secondary mt-auto">Читать далее</a>
       </div>
     </div>
-  
-    <!-- Сообщение, если постов нет -->
-    <div *ngIf="!isLoading && posts.length === 0">
-      <p>Пока нет ни одного поста. Станьте первым!</p>
-    </div>
+
   </div>
+</div>
+
+<div *ngIf="!isLoading && posts.length === 0" class="alert alert-info">
+  Пока нет ни одного поста. Станьте первым!
+</div>

@@ -10,15 +10,16 @@ import { BlogService } from '../../service/blog.service';
 })
 export class BlogListComponent implements OnInit {
   posts: BlogPostView[] = [];
-  isLoading = true; // Флаг для отображения индикатора загрузки
+  isLoading = true;
 
   constructor(private blogService: BlogService) { }
   ngOnInit(): void {
-    this.blogService.getPosts().subscribe({
+    this.blogService.getAllBlogs().subscribe({
       next: (data) => {
         this.posts = data;
         this.isLoading = false;
         console.log('Посты успешно загружены:', data);
+        console.log("Posts ", this.posts)
       },
       error: (err) => {
         console.error('Ошибка при загрузке постов:', err);

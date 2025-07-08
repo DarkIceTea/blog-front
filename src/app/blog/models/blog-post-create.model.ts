@@ -1,6 +1,6 @@
 export interface BlogPostCreate {
-    Title: string;
-    Content: string;
-    CategoryId: string;
-    Privacy: 'public' | 'private' | 'onReference';
+    title: string;
+    content: string;
+    categoryId: string;
+    privacy: 'public' | 'private' | 'onReference';
   }

@@ -1,15 +1,15 @@
 export interface BlogPostView {
-    Id: string; // Guid в C# обычно представляется строкой в JSON
-    Title: string;
-    Content: string;
-    CreatedAt: Date;
-    UpdatedAt: Date;
-    Category: {
-      Id: string;
-      Name: string;
+    id: string; 
+    title: string;
+    content: string;
+    createdAt: Date;
+    updatedAt: Date;
+    category: {
+      id: string;
+      name: string;
     };
-    Privacy: 'public' | 'private' | 'onReference';
-    AuthorId: string;
-    IsBlocked: boolean;
-    PathsToImages: string[];
+    privacy: 'public' | 'private' | 'onReference';
+    authorId: string;
+    isBlocked: boolean;
+    pathsToImages: string[];
   }

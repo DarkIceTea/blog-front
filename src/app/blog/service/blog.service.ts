@@ -21,4 +21,8 @@ export class BlogService {
   public createBlogs(postData: BlogPostCreate): Observable<BlogPostView> {
     return this.http.post<BlogPostView>(this.apiUrl, postData);
   }
+
+  public getPostById(id: string): Observable<BlogPostView> {
+    return this.http.get<BlogPostView>(`${this.apiUrl}/${id}`);
+  }
 }

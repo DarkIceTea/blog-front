@@ -1,0 +1,25 @@
+<div *ngIf="post$ | async as post; else loadingOrError">
+    <h1 class="mb-3">{{ post.title }}</h1>
+
+    <p class="text-muted">
+        Опубликовано: {{ post.createdAt | date:'fullDate' }} | Обновлено: {{ post.updatedAt | date:'short' }}
+    </p>
+    <hr>
+
+    <div *ngIf="post.pathsToImages && post.pathsToImages.length > 0" class="mb-4">
+        <img [src]="post.pathsToImages[0]" class="img-fluid rounded" alt="Изображение к посту">
+    </div>
+
+    <div class="post-content" [innerHTML]="post.content"></div>
+
+    <hr>
+    <a routerLink="/blogs" class="btn btn-primary">Назад к списку</a>
+</div>
+<ng-template #loadingOrError>
+    <div class="text-center">
+        <div class="spinner-border" role="status">
+            <span class="visually-hidden">Загрузка...</span>
+        </div>
+        <p>Загрузка поста...</p>
+    </div>
+</ng-template>

@@ -27,20 +27,20 @@ export class BlogPostCreateComponent implements OnInit {
     private fb: FormBuilder) { }
 
   ngOnInit(): void {
-    this.createForm$()
-      //   .pipe(switchMap(()=>this.blogService.requestBlogDetails$(1)
-      // tap((data:any)=>{
-      //   this.form.controls.title.setValue(data.title)
-      // })),take(1))
-      .pipe(tap(() => {
-        console.log("created")
-      }))
-      .subscribe(()=>{
-        this.form?.controls?.['privacy'].valueChanges
-        .pipe(takeUntilDestroyed()).subscribe(()=>{
-          console.log("privacy changed")
-        })
-      })
+    // this.createForm$()
+    //   //   .pipe(switchMap(()=>this.blogService.requestBlogDetails$(1)
+    //   // tap((data:any)=>{
+    //   //   this.form.controls.title.setValue(data.title)
+    //   // })),take(1))
+    //   .pipe(tap(() => {
+    //     console.log("created")
+    //   }))
+    //   .subscribe(()=>{
+    //     this.form?.controls?.['privacy'].valueChanges
+    //     .pipe(takeUntilDestroyed()).subscribe(()=>{
+    //       console.log("privacy changed")
+    //     })
+    //   })
   }
 
   public form: FormGroup | null = null;

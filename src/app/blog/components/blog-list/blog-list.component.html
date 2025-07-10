@@ -7,7 +7,7 @@
   <h1 class="mb-0">Наш Блог</h1>
   <!-- btn - базовый класс для кнопки. -->
   <!-- btn-primary - делает кнопку синей (основной цвет темы). -->
-  <a routerLink="/blog/create" class="btn btn-primary">Создать пост</a>
+  <a routerLink="/blogs/create" class="btn btn-primary">Создать пост</a>
 </div>
 
 <!-- Блок для индикатора загрузки. -->
@@ -24,6 +24,7 @@
     <div class="card h-100">  
       <div class="card-body d-flex flex-column">
         <h5 class="card-title">{{ post.title }}</h5>
+        <img src="C:\Users\oadmin\Pictures\Camera Roll\WIN_20250320_10_15_24_Pro.jpg">
         <p class="card-text">{{ post.content | slice:0:150 }}...</p>
         
         <a [routerLink]="['/blogs', post.id]" class="btn btn-outline-secondary mt-auto">Читать далее</a>

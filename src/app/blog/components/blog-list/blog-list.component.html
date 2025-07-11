@@ -9,6 +9,10 @@
   <!-- btn-primary - делает кнопку синей (основной цвет темы). -->
   <a routerLink="/blogs/create" class="btn btn-primary">Создать пост</a>
 </div>
+<div>
+  <input #searchInput class="input" placeholder="Поиск">
+  <button class="btn btn-outline-secondary" (click)="searchBlogs(searchInput.value)">Найти</button>
+</div>
 
 <!-- Блок для индикатора загрузки. -->
 <div *ngIf="isLoading" class="text-center">
@@ -26,7 +30,7 @@
         <h5 class="card-title">{{ post.title }}</h5>
         <img src="C:\Users\oadmin\Pictures\Camera Roll\WIN_20250320_10_15_24_Pro.jpg">
         <p class="card-text">{{ post.content | slice:0:150 }}...</p>
-        
+          <button *ngFor="let tag of post.tags" class="ref" (click)="searchByTag(tag.name)">{{tag.name}}</button>
         <a [routerLink]="['/blogs', post.id]" class="btn btn-outline-secondary mt-auto">Читать далее</a>
       </div>
     </div>

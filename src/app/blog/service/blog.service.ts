@@ -1,6 +1,6 @@
 // src/app/blog/services/blog.service.ts
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { BlogPostView } from '../models/blog-post-view.model';
 import { BlogPostCreate } from '../models/blog-post-create.model';
@@ -14,8 +14,16 @@ export class BlogService {
 
   constructor(private http: HttpClient) { }
   
-  public getAllBlogs(): Observable<BlogPostView[]> {
-    return this.http.get<BlogPostView[]>(this.apiUrl);
+  public getAllBlogs(searchTerm: string | null): Observable<BlogPostView[]> {
+    if(searchTerm){
+      return this.http.get<BlogPostView[]>(this.apiUrl, {params: {searchTerm: searchTerm}})
+    }else{
+      return this.http.get<BlogPostView[]>(this.apiUrl);
+    }
+  }
+
+  public getPostsByTag(tag: string){
+    return this.http.get<BlogPostView[]>(this.apiUrl + "/tags", {params: {tag: tag}})
   }
  
   public createBlogs(postData: BlogPostCreate): Observable<BlogPostView> {
